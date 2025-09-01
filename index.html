@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Bocce League Schedule 2025-26</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .season-info {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            background: white;
+            padding: 8px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 88px;
+            z-index: 90;
+            margin-bottom: 16px;
+        }
+
+        .tab-nav-inner {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 16px;
+            background: #f5f5f7;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .tab-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px 32px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Week Cards */
+        .week-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .week-card.current-week {
+            border: 2px solid #667eea;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+
+        .week-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .week-date {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .current-badge {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom-left-radius: 12px;
+        }
+
+        /* Game Items */
+        .game-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f2;
+        }
+
+        .game-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .game-time {
+            min-width: 70px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .game-matchup {
+            flex: 1;
+            font-size: 15px;
+            color: #333;
+            padding: 0 8px;
+        }
+
+        .team-name {
+            font-weight: 500;
+        }
+
+        .vs {
+            color: #999;
+            font-weight: 400;
+            margin: 0 4px;
+        }
+
+        .bye-week {
+            background: #f5f5f7;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* Standings */
+        .standings-list {
+            background: white;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .standings-update-info {
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #f0f0f2;
+            margin-top: 8px;
+        }
+
+        .standings-loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-size: 14px;
+        }
+
+        .standing-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 12px;
+            border-bottom: 1px solid #f0f0f2;
+            transition: background 0.2s ease;
+        }
+
+        .standing-item:last-child {
+            border-bottom: none;
+        }
+
+        .standing-item:active {
+            background: #f9f9fb;
+        }
+
+        .standing-rank {
+            min-width: 32px;
+            height: 32px;
+            background: #f5f5f7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .standing-rank.gold {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+        }
+
+        .standing-rank.silver {
+            background: linear-gradient(135deg, #C0C0C0, #808080);
+            color: white;
+        }
+
+        .standing-rank.bronze {
+            background: linear-gradient(135deg, #CD7F32, #8B4513);
+            color: white;
+        }
+
+        .standing-team {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .standing-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            color: #333;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /* This Week Section */
+        .this-week-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .this-week-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .this-week-date {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 375px) {
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .tab-button {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+            
+            .game-time {
+                min-width: 60px;
+                font-size: 13px;
+            }
+            
+            .game-matchup {
+                font-size: 14px;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* Holiday Break Card */
+        .holiday-break {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 16px 0;
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.3);
+        }
+
+        .holiday-break h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .holiday-break p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🎯 Bocce League</h1>
+            <div class="season-info">2025-26 Season • Wednesdays</div>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+        <div class="tab-nav-inner">
+            <button class="tab-button active" onclick="switchTab('schedule')">Schedule</button>
+            <button class="tab-button" onclick="switchTab('standings')">Standings</button>
+            <button class="tab-button" onclick="switchTab('thisweek')">This Week</button>
+        </div>
+    </nav>
+
+    <!-- Content Container -->
+    <div class="content">
+        <!-- Schedule Tab -->
+        <div id="schedule" class="tab-content active">
+            <!-- Schedule will be populated by JavaScript -->
+        </div>
+
+        <!-- Standings Tab -->
+        <div id="standings" class="tab-content">
+            <div class="standings-list">
+                <div class="standings-loading">Loading live standings...</div>
+            </div>
+        </div>
+
+        <!-- This Week Tab -->
+        <div id="thisweek" class="tab-content">
+            <!-- This week's games will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        /* 
+        ====================================
+        GOOGLE SHEETS SETUP INSTRUCTIONS:
+        ====================================
+        1. Create a Google Sheet with two columns:
+           - Column A: Team (team names)
+           - Column B: Points (total points)
+        
+        2. Enter your team data:
+           Team                    | Points
+           -------------------------|--------
+           DeBoccery               | 24
+           Wu-Tang Balls           | 18
+           New Kids on the Bocce   | 15
+           etc...
+        
+        3. Publish to web:
+           - File → Share → Publish to web
+           - Select "Entire Document" and "CSV" format
+           - Click "Publish"
+           - Copy the URL and replace the STANDINGS_CSV_URL below
+        
+        4. The standings will auto-update every 30 seconds
+           when you change values in the Google Sheet
+        
+        IMPORTANT: Live standings require the site to be hosted online.
+        If opening locally (file://), you may see CORS errors.
+        Solution: Upload to GitHub Pages, Netlify, or any web host.
+        ====================================
+        */
+
+        // League Schedule Data
+        const scheduleData = [
+            // Session 1
+            {
+                week: 1,
+                date: 'September 3, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['New Kids on the Bocce', 'Bocce-Tuah'] },
+                    { time: '7:00 PM', teams: ['John Does', 'Old Pikes'] },
+                    { time: '8:00 PM', teams: ['DeBoccery', 'Wu-Tang Balls'] }
+                ],
+                bye: 'Strategic Miss Rolls'
+            },
+            {
+                week: 2,
+                date: 'September 10, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'John Does'] },
+                    { time: '7:00 PM', teams: ['Strategic Miss Rolls', 'DeBoccery'] },
+                    { time: '8:00 PM', teams: ['Bocce-Tuah', 'Old Pikes'] }
+                ],
+                bye: 'New Kids on the Bocce'
+            },
+            {
+                week: 3,
+                date: 'September 17, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'Old Pikes'] },
+                    { time: '7:00 PM', teams: ['New Kids on the Bocce', 'Strategic Miss Rolls'] },
+                    { time: '8:00 PM', teams: ['DeBoccery', 'Bocce-Tuah'] }
+                ],
+                bye: 'John Does'
+            },
+            {
+                week: 4,
+                date: 'September 24, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Strategic Miss Rolls', 'Wu-Tang Balls'] },
+                    { time: '7:00 PM', teams: ['Old Pikes', 'DeBoccery'] },
+                    { time: '8:00 PM', teams: ['John Does', 'New Kids on the Bocce'] }
+                ],
+                bye: 'Bocce-Tuah'
+            },
+            {
+                week: 5,
+                date: 'October 1, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Bocce-Tuah', 'John Does'] },
+                    { time: '7:00 PM', teams: ['Strategic Miss Rolls', 'Old Pikes'] },
+                    { time: '8:00 PM', teams: ['New Kids on the Bocce', 'DeBoccery'] }
+                ],
+                bye: 'Wu-Tang Balls'
+            },
+            {
+                week: 6,
+                date: 'October 8, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'Bocce-Tuah'] },
+                    { time: '7:00 PM', teams: ['New Kids on the Bocce', 'Old Pikes'] },
+                    { time: '8:00 PM', teams: ['John Does', 'Strategic Miss Rolls'] }
+                ],
+                bye: 'DeBoccery'
+            },
+            {
+                week: 7,
+                date: 'October 15, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['John Does', 'DeBoccery'] },
+                    { time: '7:00 PM', teams: ['Bocce-Tuah', 'Strategic Miss Rolls'] },
+                    { time: '8:00 PM', teams: ['Wu-Tang Balls', 'New Kids on the Bocce'] }
+                ],
+                bye: 'Old Pikes'
+            },
+            {
+                week: 8,
+                date: 'October 22, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Strategic Miss Rolls', 'Bocce-Tuah'] },
+                    { time: '7:00 PM', teams: ['John Does', 'Wu-Tang Balls'] },
+                    { time: '8:00 PM', teams: ['Old Pikes', 'DeBoccery'] }
+                ],
+                bye: 'New Kids on the Bocce'
+            },
+            {
+                week: 9,
+                date: 'October 29, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['New Kids on the Bocce', 'John Does'] },
+                    { time: '7:00 PM', teams: ['DeBoccery', 'Strategic Miss Rolls'] },
+                    { time: '8:00 PM', teams: ['Old Pikes', 'Wu-Tang Balls'] }
+                ],
+                bye: 'Bocce-Tuah'
+            },
+            {
+                week: 10,
+                date: 'November 5, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Bocce-Tuah', 'DeBoccery'] },
+                    { time: '7:00 PM', teams: ['Old Pikes', 'New Kids on the Bocce'] },
+                    { time: '8:00 PM', teams: ['Wu-Tang Balls', 'Strategic Miss Rolls'] }
+                ],
+                bye: 'John Does'
+            },
+            {
+                week: 11,
+                date: 'November 12, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Strategic Miss Rolls', 'Old Pikes'] },
+                    { time: '7:00 PM', teams: ['John Does', 'Bocce-Tuah'] },
+                    { time: '8:00 PM', teams: ['DeBoccery', 'New Kids on the Bocce'] }
+                ],
+                bye: 'Wu-Tang Balls'
+            },
+            {
+                week: 12,
+                date: 'November 19, 2025',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'DeBoccery'] },
+                    { time: '7:00 PM', teams: ['New Kids on the Bocce', 'Bocce-Tuah'] },
+                    { time: '8:00 PM', teams: ['John Does', 'Old Pikes'] }
+                ],
+                bye: 'Strategic Miss Rolls'
+            },
+            // Holiday Break indicator
+            { 
+                week: 'holiday',
+                date: 'November 26 - January 6',
+                isHoliday: true
+            },
+            // Session 2
+            {
+                week: 13,
+                date: 'January 7, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['John Does', 'Strategic Miss Rolls'] },
+                    { time: '7:00 PM', teams: ['Old Pikes', 'Bocce-Tuah'] },
+                    { time: '8:00 PM', teams: ['New Kids on the Bocce', 'Wu-Tang Balls'] }
+                ],
+                bye: 'DeBoccery'
+            },
+            {
+                week: 14,
+                date: 'January 14, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['DeBoccery', 'John Does'] },
+                    { time: '7:00 PM', teams: ['Wu-Tang Balls', 'Bocce-Tuah'] },
+                    { time: '8:00 PM', teams: ['Strategic Miss Rolls', 'New Kids on the Bocce'] }
+                ],
+                bye: 'Old Pikes'
+            },
+            {
+                week: 15,
+                date: 'January 21, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['Old Pikes', 'John Does'] },
+                    { time: '7:00 PM', teams: ['DeBoccery', 'Wu-Tang Balls'] },
+                    { time: '8:00 PM', teams: ['Bocce-Tuah', 'Strategic Miss Rolls'] }
+                ],
+                bye: 'New Kids on the Bocce'
+            },
+            {
+                week: 16,
+                date: 'January 28, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'John Does'] },
+                    { time: '7:00 PM', teams: ['New Kids on the Bocce', 'DeBoccery'] },
+                    { time: '8:00 PM', teams: ['Strategic Miss Rolls', 'Old Pikes'] }
+                ],
+                bye: 'Bocce-Tuah'
+            },
+            {
+                week: 17,
+                date: 'February 4, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['Bocce-Tuah', 'Old Pikes'] },
+                    { time: '7:00 PM', teams: ['Strategic Miss Rolls', 'DeBoccery'] },
+                    { time: '8:00 PM', teams: ['New Kids on the Bocce', 'John Does'] }
+                ],
+                bye: 'Wu-Tang Balls'
+            },
+            {
+                week: 18,
+                date: 'February 11, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['Wu-Tang Balls', 'Strategic Miss Rolls'] },
+                    { time: '7:00 PM', teams: ['John Does', 'Bocce-Tuah'] },
+                    { time: '8:00 PM', teams: ['Old Pikes', 'New Kids on the Bocce'] }
+                ],
+                bye: 'DeBoccery'
+            },
+            {
+                week: 19,
+                date: 'February 18, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['DeBoccery', 'Bocce-Tuah'] },
+                    { time: '7:00 PM', teams: ['Wu-Tang Balls', 'New Kids on the Bocce'] },
+                    { time: '8:00 PM', teams: ['Strategic Miss Rolls', 'John Does'] }
+                ],
+                bye: 'Old Pikes'
+            },
+            {
+                week: 20,
+                date: 'February 25, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['New Kids on the Bocce', 'Strategic Miss Rolls'] },
+                    { time: '7:00 PM', teams: ['Old Pikes', 'DeBoccery'] },
+                    { time: '8:00 PM', teams: ['Bocce-Tuah', 'Wu-Tang Balls'] }
+                ],
+                bye: 'John Does'
+            },
+            {
+                week: 21,
+                date: 'March 4, 2026',
+                games: [
+                    { time: '6:00 PM', teams: ['John Does', 'DeBoccery'] },
+                    { time: '7:00 PM', teams: ['Bocce-Tuah', 'New Kids on the Bocce'] },
+                    { time: '8:00 PM', teams: ['Wu-Tang Balls', 'Old Pikes'] }
+                ],
+                bye: 'Strategic Miss Rolls'
+            }
+        ];
+
+        // Standings data (will be populated from Google Sheets)
+        let standingsData = [
+            { team: 'DeBoccery', points: 0 },
+            { team: 'Wu-Tang Balls', points: 0 },
+            { team: 'New Kids on the Bocce', points: 0 },
+            { team: 'Bocce-Tuah', points: 0 },
+            { team: 'John Does', points: 0 },
+            { team: 'Old Pikes', points: 0 },
+            { team: 'Strategic Miss Rolls', points: 0 }
+        ];
+
+        // Google Sheets CSV URL
+        const STANDINGS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSvrtrtv8h4Im3f0Wwq6W0oVK4DSsuqg9o9Gg1EhzYqc_9vj3Z2mfYovEpSEkRy2ZL2_Yu18T3lO_nx/pub?output=csv';
+
+        // Fetch standings from Google Sheets
+        async function fetchStandings() {
+            try {
+                // Try using fetch with CORS mode
+                const response = await fetch(STANDINGS_CSV_URL, {
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'text/csv'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch standings');
+                }
+                const csvText = await response.text();
+                
+                // Parse CSV
+                const rows = csvText.split('\n').filter(row => row.trim());
+                if (rows.length < 2) {
+                    throw new Error('No data in spreadsheet');
+                }
+                
+                const headers = rows[0].split(',').map(h => h.trim());
+                
+                // Find column indices (case-insensitive)
+                const teamIndex = headers.findIndex(h => h.toLowerCase().includes('team'));
+                const pointsIndex = headers.findIndex(h => h.toLowerCase().includes('point') || h.toLowerCase().includes('pts'));
+                
+                // If columns not found, try default positions
+                const teamCol = teamIndex >= 0 ? teamIndex : 0;
+                const pointsCol = pointsIndex >= 0 ? pointsIndex : 1;
+                
+                // Parse data rows
+                const newStandings = [];
+                for (let i = 1; i < rows.length; i++) {
+                    const cols = rows[i].split(',').map(c => c.trim());
+                    if (cols[teamCol]) {
+                        newStandings.push({
+                            team: cols[teamCol].replace(/['"]/g, ''), // Remove quotes if present
+                            points: parseInt(cols[pointsCol]) || 0
+                        });
+                    }
+                }
+                
+                // Update standings if we got valid data
+                if (newStandings.length > 0) {
+                    standingsData = newStandings;
+                    renderStandings();
+                    console.log('Standings updated from Google Sheets');
+                } else {
+                    throw new Error('No valid team data found');
+                }
+            } catch (error) {
+                console.error('Error fetching standings:', error);
+                
+                // Check if it's a CORS error
+                if (error.message.includes('Failed to fetch') || error.message.includes('Load failed')) {
+                    // Try alternative method using JSONP-like approach
+                    tryAlternativeFetch();
+                } else {
+                    // Show error message if this is the first load
+                    if (document.querySelector('.standings-loading')) {
+                        document.querySelector('#standings .standings-list').innerHTML = `
+                            <div style="text-align: center; padding: 20px; color: #999;">
+                                <p style="font-size: 14px;">Unable to load live standings</p>
+                                <p style="font-size: 12px; margin-top: 8px;">Note: Live standings work best when hosted online</p>
+                                <p style="font-size: 11px; margin-top: 8px; color: #667eea;">Try uploading to GitHub Pages or Netlify</p>
+                            </div>
+                        `;
+                        // Use default standings after showing error
+                        setTimeout(() => {
+                            renderStandings();
+                        }, 3000);
+                    }
+                }
+            }
+        }
+
+        // Alternative fetch method for CORS issues
+        function tryAlternativeFetch() {
+            // Try using a CORS proxy (for testing only)
+            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(STANDINGS_CSV_URL);
+            
+            fetch(proxyUrl)
+                .then(response => response.text())
+                .then(csvText => {
+                    // Parse CSV
+                    const rows = csvText.split('\n').filter(row => row.trim());
+                    if (rows.length < 2) return;
+                    
+                    const headers = rows[0].split(',').map(h => h.trim());
+                    const teamIndex = headers.findIndex(h => h.toLowerCase().includes('team'));
+                    const pointsIndex = headers.findIndex(h => h.toLowerCase().includes('point') || h.toLowerCase().includes('pts'));
+                    
+                    const teamCol = teamIndex >= 0 ? teamIndex : 0;
+                    const pointsCol = pointsIndex >= 0 ? pointsIndex : 1;
+                    
+                    const newStandings = [];
+                    for (let i = 1; i < rows.length; i++) {
+                        const cols = rows[i].split(',').map(c => c.trim());
+                        if (cols[teamCol]) {
+                            newStandings.push({
+                                team: cols[teamCol].replace(/['"]/g, ''),
+                                points: parseInt(cols[pointsCol]) || 0
+                            });
+                        }
+                    }
+                    
+                    if (newStandings.length > 0) {
+                        standingsData = newStandings;
+                        renderStandings();
+                        console.log('Standings updated via proxy');
+                    }
+                })
+                .catch(error => {
+                    console.error('Proxy fetch also failed:', error);
+                    // Fall back to default standings
+                    renderStandings();
+                });
+        }
+
+        // Get current week based on today's date
+        function getCurrentWeek() {
+            // Auto-calculate based on the user's browser date
+            const today = new Date();
+            for (let i = 0; i < scheduleData.length; i++) {
+                const week = scheduleData[i];
+                if (week.isHoliday) continue;
+                
+                const weekDate = new Date(week.date);
+                const nextWeekDate = scheduleData[i + 1] ? new Date(scheduleData[i + 1].date) : new Date('2026-12-31');
+                
+                if (today >= weekDate && today < nextWeekDate) {
+                    return week.week;
+                }
+            }
+            return 1; // Default to week 1 if no current week found
+            
+            /* Manual control option (uncomment to use specific week)
+            return 1; // Change this number to manually set the week
+            */
+        }
+
+        // Render schedule
+        function renderSchedule() {
+            const scheduleContainer = document.getElementById('schedule');
+            const currentWeek = getCurrentWeek();
+            let html = '';
+
+            scheduleData.forEach((week) => {
+                if (week.isHoliday) {
+                    html += `
+                        <div class="holiday-break">
+                            <h3>❄️ Holiday Break</h3>
+                            <p>${week.date}</p>
+                            <p>No games scheduled</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const isCurrentWeek = week.week === currentWeek;
+                html += `
+                    <div class="week-card ${isCurrentWeek ? 'current-week' : ''}">
+                        ${isCurrentWeek ? '<span class="current-badge">This Week</span>' : ''}
+                        <div class="week-header">
+                            <div class="week-title">Week ${week.week}</div>
+                            <div class="week-date">${week.date}</div>
+                        </div>
+                `;
+
+                week.games.forEach(game => {
+                    html += `
+                        <div class="game-item">
+                            <div class="game-time">🕐 ${game.time}</div>
+                            <div class="game-matchup">
+                                <span class="team-name">${game.teams[0]}</span>
+                                <span class="vs">vs</span>
+                                <span class="team-name">${game.teams[1]}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (week.bye) {
+                    html += `<div class="bye-week">Bye: ${week.bye}</div>`;
+                }
+
+                html += '</div>';
+            });
+
+            scheduleContainer.innerHTML = html;
+        }
+
+        // Render standings
+        function renderStandings() {
+            const standingsContainer = document.querySelector('#standings .standings-list');
+            
+            // Sort standings by points (descending)
+            const sortedStandings = [...standingsData].sort((a, b) => b.points - a.points);
+
+            let html = '';
+            sortedStandings.forEach((team, index) => {
+                const rankClass = index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : '';
+                
+                html += `
+                    <div class="standing-item">
+                        <div class="standing-rank ${rankClass}">${index + 1}</div>
+                        <div class="standing-team">${team.team}</div>
+                        <div class="standing-stats">
+                            <div class="stat">
+                                <span class="stat-label">POINTS</span>
+                                <span class="stat-value">${team.points}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Add update info with refresh button
+            const updateTime = new Date().toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            });
+            
+            html += `
+                <div class="standings-update-info">
+                    Live standings • Updated ${updateTime}
+                    <br>
+                    <span style="font-size: 11px;">Auto-refreshes every 30 seconds</span>
+                    <br>
+                    <button onclick="fetchStandings()" style="
+                        margin-top: 8px;
+                        padding: 6px 12px;
+                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    ">Refresh Now</button>
+                </div>
+            `;
+
+            standingsContainer.innerHTML = html;
+        }
+
+        // Render this week
+        function renderThisWeek() {
+            const thisWeekContainer = document.getElementById('thisweek');
+            const currentWeek = getCurrentWeek();
+            const weekData = scheduleData.find(w => w.week === currentWeek);
+
+            if (!weekData || weekData.isHoliday) {
+                thisWeekContainer.innerHTML = `
+                    <div class="holiday-break">
+                        <h3>❄️ No Games This Week</h3>
+                        <p>Enjoy the break!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="this-week-header">
+                    <div class="this-week-title">Week ${weekData.week}</div>
+                    <div class="this-week-date">${weekData.date}</div>
+                </div>
+                <div class="week-card">
+            `;
+
+            weekData.games.forEach(game => {
+                html += `
+                    <div class="game-item">
+                        <div class="game-time">🕐 ${game.time}</div>
+                        <div class="game-matchup">
+                            <span class="team-name">${game.teams[0]}</span>
+                            <span class="vs">vs</span>
+                            <span class="team-name">${game.teams[1]}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (weekData.bye) {
+                html += `<div class="bye-week">Bye: ${weekData.bye}</div>`;
+            }
+
+            html += '</div>';
+            thisWeekContainer.innerHTML = html;
+        }
+
+        // Tab switching function
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSchedule();
+            renderStandings(); // Render with default data first
+            renderThisWeek();
+            
+            // Fetch live standings from Google Sheets
+            fetchStandings();
+            
+            // Refresh standings every 30 seconds for live updates
+            setInterval(fetchStandings, 30000);
+        });
+
+        // Touch gesture support for tab switching
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) < swipeThreshold) return;
+            
+            const tabs = ['schedule', 'standings', 'thisweek'];
+            const activeTab = document.querySelector('.tab-content.active').id;
+            const currentIndex = tabs.indexOf(activeTab);
+            
+            if (diff > 0 && currentIndex < tabs.length - 1) {
+                // Swipe left - next tab
+                const nextTab = tabs[currentIndex + 1];
+                document.querySelector(`.tab-button:nth-child(${currentIndex + 2})`).click();
+            } else if (diff < 0 && currentIndex > 0) {
+                // Swipe right - previous tab
+                const prevTab = tabs[currentIndex - 1];
+                document.querySelector(`.tab-button:nth-child(${currentIndex})`).click();
+            }
+        }
+    </script>
+</body>
+</html>
