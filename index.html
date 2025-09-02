@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <title>Bocce League Schedule 2025-26</title>
+    <title>Clancy's Bocce League 2025-26</title>
     <style>
         /* Reset and Base Styles */
         * {
@@ -16,7 +16,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2d7a3e 0%, #667eea 50%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
             font-size: 16px;
@@ -43,7 +43,7 @@
         .header h1 {
             font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2d7a3e, #3a9651);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -92,7 +92,7 @@
         }
 
         .tab-button.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2d7a3e, #3a9651);
             color: white;
             transform: scale(1.02);
         }
@@ -134,8 +134,8 @@
         }
 
         .week-card.current-week {
-            border: 2px solid #667eea;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            border: 2px solid #2d7a3e;
+            box-shadow: 0 6px 20px rgba(45, 122, 62, 0.3);
         }
 
         .week-header {
@@ -163,7 +163,7 @@
             position: absolute;
             top: -1px;
             right: -1px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2d7a3e, #3a9651);
             color: white;
             padding: 4px 12px;
             font-size: 11px;
@@ -189,7 +189,7 @@
             min-width: 70px;
             font-size: 14px;
             font-weight: 600;
-            color: #667eea;
+            color: #2d7a3e;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -243,7 +243,7 @@
         .standings-loading {
             text-align: center;
             padding: 20px;
-            color: #667eea;
+            color: #2d7a3e;
             font-size: 14px;
         }
 
@@ -277,18 +277,21 @@
         }
 
         .standing-rank.gold {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: linear-gradient(135deg, #FFD700, #FFC125);
             color: white;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
         }
 
         .standing-rank.silver {
-            background: linear-gradient(135deg, #C0C0C0, #808080);
+            background: linear-gradient(135deg, #C0C0C0, #A8A8A8);
             color: white;
+            box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4);
         }
 
         .standing-rank.bronze {
-            background: linear-gradient(135deg, #CD7F32, #8B4513);
+            background: linear-gradient(135deg, #CD7F32, #B87333);
             color: white;
+            box-shadow: 0 2px 8px rgba(205, 127, 50, 0.4);
         }
 
         .standing-team {
@@ -335,23 +338,24 @@
             font-weight: 700;
             color: white;
             margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .this-week-date {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             font-weight: 500;
         }
 
         /* Responsive adjustments */
         @media (max-width: 375px) {
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
             
             .tab-button {
-                font-size: 14px;
-                padding: 10px 12px;
+                font-size: 13px;
+                padding: 10px 8px;
             }
             
             .game-time {
@@ -370,6 +374,94 @@
             padding: 40px;
             color: white;
             font-size: 18px;
+        }
+
+        /* Teams Section */
+        .teams-list {
+            background: white;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-card {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f2;
+            position: relative;
+        }
+
+        .team-card:last-child {
+            border-bottom: none;
+        }
+
+        .team-card:active {
+            background: #f9f9fb;
+        }
+
+        .team-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .payment-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .payment-badge.paid {
+            background: #d4f4dd;
+            color: #2d7a3e;
+        }
+
+        .captain-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .captain-email {
+            font-size: 13px;
+            color: #2d7a3e;
+            text-decoration: none;
+        }
+
+        .captain-email:active {
+            text-decoration: underline;
+        }
+
+        .payment-info {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .payment-info h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .payment-info p {
+            font-size: 13px;
+            color: #666;
+            margin: 4px 0;
+        }
+
+        .payment-info strong {
+            color: #667eea;
         }
 
         /* Holiday Break Card */
@@ -398,8 +490,8 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <h1>🎯 Bocce League</h1>
-            <div class="season-info">2025-26 Season • Wednesdays</div>
+            <h1>☘️ Clancy's Bocce League</h1>
+            <div class="season-info">2025-26 Season • Wednesdays at Clancy's</div>
         </div>
     </header>
 
@@ -409,6 +501,7 @@
             <button class="tab-button active" onclick="switchTab('schedule')">Schedule</button>
             <button class="tab-button" onclick="switchTab('standings')">Standings</button>
             <button class="tab-button" onclick="switchTab('thisweek')">This Week</button>
+            <button class="tab-button" onclick="switchTab('teams')">Teams</button>
         </div>
     </nav>
 
@@ -422,7 +515,7 @@
         <!-- Standings Tab -->
         <div id="standings" class="tab-content">
             <div class="standings-list">
-                <div class="standings-loading">Loading live standings...</div>
+                <div class="standings-loading">Loading standings...</div>
             </div>
         </div>
 
@@ -430,39 +523,114 @@
         <div id="thisweek" class="tab-content">
             <!-- This week's games will be populated by JavaScript -->
         </div>
+
+        <!-- Teams Tab -->
+        <div id="teams" class="tab-content">
+            <div class="teams-header" style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">👥 Teams & Captains</div>
+            </div>
+            <div class="teams-list">
+                <!-- Teams will be populated by JavaScript -->
+            </div>
+        </div>
     </div>
 
     <script>
         /* 
         ====================================
+        CLANCY'S BOCCE LEAGUE SCHEDULE
+        ====================================
+        This page displays the bocce league schedule with:
+        - Standings pulled from Google Sheets
+        - Payment tracking from Google Sheets
+        - Automatic week detection
+        - Mobile-optimized design
+        ====================================
+        
         GOOGLE SHEETS SETUP INSTRUCTIONS:
         ====================================
-        1. Create a Google Sheet with two columns:
+        ====================================
+        1. Create a Google Sheet with three columns:
            - Column A: Team (team names)
            - Column B: Points (total points)
+           - Column C: Paid (payment status)
         
         2. Enter your team data:
-           Team                    | Points
-           -------------------------|--------
-           DeBoccery               | 24
-           Wu-Tang Balls           | 18
-           New Kids on the Bocce   | 15
-           etc...
+           Team                    | Points | Paid
+           ------------------------|--------|------
+           DeBoccery              | 0      | No
+           Wu-Tang Balls          | 0      | Yes
+           New Kids on the Bocce  | 0      | Yes
+           Bocce-Tuah            | 0      | No
+           John Does             | 0      | No
+           Old Pikes             | 0      | Yes
+           Strategic Miss Rolls   | 0      | Yes
         
-        3. Publish to web:
+        3. For the "Paid" column, you can use any of these values:
+           - For PAID: "Yes", "TRUE", "1", "Paid", "✓", "✅", "X", "Y"
+           - For NOT PAID: "No", "FALSE", "0", "" (empty), or anything else
+        
+        4. Publish to web:
            - File → Share → Publish to web
            - Select "Entire Document" and "CSV" format
            - Click "Publish"
            - Copy the URL and replace the STANDINGS_CSV_URL below
         
-        4. The standings will auto-update every 30 seconds
+        5. The standings AND payment status will auto-update every 30 seconds
            when you change values in the Google Sheet
         
-        IMPORTANT: Live standings require the site to be hosted online.
+        IMPORTANT: Live data requires the site to be hosted online.
         If opening locally (file://), you may see CORS errors.
         Solution: Upload to GitHub Pages, Netlify, or any web host.
         ====================================
         */
+
+        // Teams and Captains data 
+        // 'paid' status updates from Google Sheets
+        let teamsData = [
+            { 
+                team: 'DeBoccery', 
+                captain: 'Bill Schnitker', 
+                email: 'bswillclark@yahoo.com',
+                paid: false 
+            },
+            { 
+                team: 'Wu-Tang Balls', 
+                captain: 'Sean Baijnauth', 
+                email: 'sbaijnauth@gmail.com',
+                paid: true 
+            },
+            { 
+                team: 'New Kids on the Bocce', 
+                captain: 'Joelle Sterbens', 
+                email: 'jmsterbens@gmail.com',
+                paid: true 
+            },
+            { 
+                team: 'Bocce-Tuah', 
+                captain: 'Bobby Johnson', 
+                email: 'bobby.johnson@schwab.com',
+                paid: false 
+            },
+            { 
+                team: 'John Does', 
+                captain: 'Aaron Stovall', 
+                email: 'aaronstovall@me.com',
+                paid: false 
+            },
+            { 
+                team: 'Old Pikes', 
+                captain: 'Dan Devere', 
+                email: 'ddevere7@gmail.com',
+                paid: true 
+            },
+            { 
+                team: 'Strategic Miss Rolls', 
+                captain: 'Mikayla Moore', 
+                email: 'mikayla.m.moore@gmail.com',
+                paid: true 
+            }
+        ];
 
         // League Schedule Data
         const scheduleData = [
@@ -727,20 +895,42 @@
                 // Find column indices (case-insensitive)
                 const teamIndex = headers.findIndex(h => h.toLowerCase().includes('team'));
                 const pointsIndex = headers.findIndex(h => h.toLowerCase().includes('point') || h.toLowerCase().includes('pts'));
+                const paidIndex = headers.findIndex(h => h.toLowerCase().includes('paid'));
                 
                 // If columns not found, try default positions
                 const teamCol = teamIndex >= 0 ? teamIndex : 0;
                 const pointsCol = pointsIndex >= 0 ? pointsIndex : 1;
+                const paidCol = paidIndex >= 0 ? paidIndex : 2; // Assume paid is 3rd column if exists
                 
                 // Parse data rows
                 const newStandings = [];
                 for (let i = 1; i < rows.length; i++) {
                     const cols = rows[i].split(',').map(c => c.trim());
                     if (cols[teamCol]) {
+                        const teamName = cols[teamCol].replace(/['"]/g, ''); // Remove quotes if present
+                        const points = parseInt(cols[pointsCol]) || 0;
+                        
+                        // Parse paid status - could be "Yes", "TRUE", "✓", "✅", "1", "Paid", etc.
+                        let isPaid = false;
+                        if (paidCol >= 0 && cols[paidCol]) {
+                            const paidValue = cols[paidCol].toLowerCase().replace(/['"]/g, '');
+                            isPaid = paidValue === 'yes' || paidValue === 'true' || paidValue === '1' || 
+                                    paidValue === 'paid' || paidValue === '✓' || paidValue === '✅' ||
+                                    paidValue === 'x' || paidValue === 'y';
+                        }
+                        
                         newStandings.push({
-                            team: cols[teamCol].replace(/['"]/g, ''), // Remove quotes if present
-                            points: parseInt(cols[pointsCol]) || 0
+                            team: teamName,
+                            points: points
                         });
+                        
+                        // Update payment status in teamsData if we have a paid column
+                        if (paidCol >= 0) {
+                            const teamToUpdate = teamsData.find(t => t.team === teamName);
+                            if (teamToUpdate) {
+                                teamToUpdate.paid = isPaid;
+                            }
+                        }
                     }
                 }
                 
@@ -748,7 +938,8 @@
                 if (newStandings.length > 0) {
                     standingsData = newStandings;
                     renderStandings();
-                    console.log('Standings updated from Google Sheets');
+                    renderTeams(); // Re-render teams to show updated payment status
+                    console.log('Data updated from Google Sheets');
                 } else {
                     throw new Error('No valid team data found');
                 }
@@ -766,12 +957,13 @@
                             <div style="text-align: center; padding: 20px; color: #999;">
                                 <p style="font-size: 14px;">Unable to load live standings</p>
                                 <p style="font-size: 12px; margin-top: 8px;">Note: Live standings work best when hosted online</p>
-                                <p style="font-size: 11px; margin-top: 8px; color: #667eea;">Try uploading to GitHub Pages or Netlify</p>
+                                <p style="font-size: 11px; margin-top: 8px; color: #2d7a3e;">Try uploading to GitHub Pages or Netlify</p>
                             </div>
                         `;
                         // Use default standings after showing error
                         setTimeout(() => {
                             renderStandings();
+                            renderTeams();
                         }, 3000);
                     }
                 }
@@ -793,31 +985,55 @@
                     const headers = rows[0].split(',').map(h => h.trim());
                     const teamIndex = headers.findIndex(h => h.toLowerCase().includes('team'));
                     const pointsIndex = headers.findIndex(h => h.toLowerCase().includes('point') || h.toLowerCase().includes('pts'));
+                    const paidIndex = headers.findIndex(h => h.toLowerCase().includes('paid'));
                     
                     const teamCol = teamIndex >= 0 ? teamIndex : 0;
                     const pointsCol = pointsIndex >= 0 ? pointsIndex : 1;
+                    const paidCol = paidIndex >= 0 ? paidIndex : 2;
                     
                     const newStandings = [];
                     for (let i = 1; i < rows.length; i++) {
                         const cols = rows[i].split(',').map(c => c.trim());
                         if (cols[teamCol]) {
+                            const teamName = cols[teamCol].replace(/['"]/g, '');
+                            const points = parseInt(cols[pointsCol]) || 0;
+                            
+                            // Parse paid status
+                            let isPaid = false;
+                            if (paidCol >= 0 && cols[paidCol]) {
+                                const paidValue = cols[paidCol].toLowerCase().replace(/['"]/g, '');
+                                isPaid = paidValue === 'yes' || paidValue === 'true' || paidValue === '1' || 
+                                        paidValue === 'paid' || paidValue === '✓' || paidValue === '✅' ||
+                                        paidValue === 'x' || paidValue === 'y';
+                            }
+                            
                             newStandings.push({
-                                team: cols[teamCol].replace(/['"]/g, ''),
-                                points: parseInt(cols[pointsCol]) || 0
+                                team: teamName,
+                                points: points
                             });
+                            
+                            // Update payment status in teamsData
+                            if (paidCol >= 0) {
+                                const teamToUpdate = teamsData.find(t => t.team === teamName);
+                                if (teamToUpdate) {
+                                    teamToUpdate.paid = isPaid;
+                                }
+                            }
                         }
                     }
                     
                     if (newStandings.length > 0) {
                         standingsData = newStandings;
                         renderStandings();
-                        console.log('Standings updated via proxy');
+                        renderTeams(); // Re-render teams with updated payment status
+                        console.log('Data updated via proxy');
                     }
                 })
                 .catch(error => {
                     console.error('Proxy fetch also failed:', error);
                     // Fall back to default standings
                     renderStandings();
+                    renderTeams();
                 });
         }
 
@@ -920,29 +1136,19 @@
             });
 
             // Add update info with refresh button
-            const updateTime = new Date().toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit',
-                hour12: true 
-            });
-            
             html += `
                 <div class="standings-update-info">
-                    Live standings • Updated ${updateTime}
-                    <br>
-                    <span style="font-size: 11px;">Auto-refreshes every 30 seconds</span>
-                    <br>
                     <button onclick="fetchStandings()" style="
                         margin-top: 8px;
                         padding: 6px 12px;
-                        background: linear-gradient(135deg, #667eea, #764ba2);
+                        background: linear-gradient(135deg, #2d7a3e, #3a9651);
                         color: white;
                         border: none;
                         border-radius: 8px;
                         font-size: 12px;
                         font-weight: 600;
                         cursor: pointer;
-                    ">Refresh Now</button>
+                    ">Refresh</button>
                 </div>
             `;
 
@@ -994,6 +1200,43 @@
             thisWeekContainer.innerHTML = html;
         }
 
+        // Render teams
+        function renderTeams() {
+            const teamsContainer = document.querySelector('.teams-list');
+            
+            let html = '';
+            teamsData.forEach(team => {
+                html += `
+                    <div class="team-card">
+                        <div class="team-name-row">
+                            <div class="team-name">${team.team}</div>
+                            ${team.paid ? '<div class="payment-badge paid">✅ Paid</div>' : ''}
+                        </div>
+                        <div class="captain-info">Captain: ${team.captain}</div>
+                        <a href="mailto:${team.email}" class="captain-email">${team.email}</a>
+                    </div>
+                `;
+            });
+
+            // Add payment information at the bottom
+            html += `
+                <div class="payment-info">
+                    <h3>💳 League Payment</h3>
+                    <p><strong>Venmo:</strong> @ddevere</p>
+                    <p style="font-size: 12px; color: #999;">Last 4 digits: 3551</p>
+                </div>
+                <div class="payment-info" style="margin-top: 12px;">
+                    <h3>📧 Commissioners</h3>
+                    <p><strong>Aaron Hatfield</strong></p>
+                    <a href="mailto:aaronhatfield@gmail.com" class="captain-email">aaronhatfield@gmail.com</a>
+                    <p style="margin-top: 8px;"><strong>Dan Devere</strong></p>
+                    <a href="mailto:ddevere7@gmail.com" class="captain-email">ddevere7@gmail.com</a>
+                </div>
+            `;
+
+            teamsContainer.innerHTML = html;
+        }
+
         // Tab switching function
         function switchTab(tabName) {
             // Update tab buttons
@@ -1012,13 +1255,14 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             renderSchedule();
-            renderStandings(); // Render with default data first
+            renderStandings();
             renderThisWeek();
+            renderTeams();
             
-            // Fetch live standings from Google Sheets
+            // Fetch data from Google Sheets
             fetchStandings();
             
-            // Refresh standings every 30 seconds for live updates
+            // Refresh data every 30 seconds
             setInterval(fetchStandings, 30000);
         });
 
@@ -1041,7 +1285,7 @@
             
             if (Math.abs(diff) < swipeThreshold) return;
             
-            const tabs = ['schedule', 'standings', 'thisweek'];
+            const tabs = ['schedule', 'standings', 'thisweek', 'teams'];
             const activeTab = document.querySelector('.tab-content.active').id;
             const currentIndex = tabs.indexOf(activeTab);
             
