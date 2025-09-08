@@ -100,7 +100,7 @@
             font-weight: 600;
             color: #666;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease;
             min-height: 44px;
             display: flex;
             align-items: center;
@@ -136,6 +136,12 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Performance optimizations */
+        .week-card, .standing-item, .team-card {
+            will-change: auto;
+            transform: translateZ(0);
         }
 
         /* Week Cards */
@@ -268,7 +274,7 @@
             align-items: center;
             padding: 16px 12px;
             border-bottom: 1px solid #f0f0f2;
-            transition: background 0.2s ease;
+            transition: background-color 0.15s ease;
         }
 
         .standing-item:last-child {
@@ -1050,6 +1056,9 @@
                     // Fall back to default standings
                     renderStandings();
                     renderTeams();
+                })
+                .finally(() => {
+                    fetchInProgress = false;
                 });
         }
 
@@ -1080,6 +1089,7 @@
         // Render schedule
         function renderSchedule() {
             const scheduleContainer = document.getElementById('schedule');
+            if (!scheduleContainer) return;
             const currentWeek = getCurrentWeek();
             let html = '';
 
@@ -1125,12 +1135,15 @@
                 html += '</div>';
             });
 
-            scheduleContainer.innerHTML = html;
+            requestAnimationFrame(() => {
+                scheduleContainer.innerHTML = html;
+            });
         }
 
         // Render standings
         function renderStandings() {
             const standingsContainer = document.querySelector('#standings .standings-list');
+            if (!standingsContainer) return;
             
             // Sort standings by points (descending)
             const sortedStandings = [...standingsData].sort((a, b) => b.points - a.points);
@@ -1156,7 +1169,7 @@
             // Add update info with refresh button
             html += `
                 <div class="standings-update-info">
-                    <button onclick="fetchStandings()" style="
+                    <button type="button" onclick="fetchStandings()" style="
                         margin-top: 8px;
                         padding: 6px 12px;
                         background: linear-gradient(135deg, #2d7a3e, #3a9651);
@@ -1170,12 +1183,15 @@
                 </div>
             `;
 
-            standingsContainer.innerHTML = html;
+            requestAnimationFrame(() => {
+                standingsContainer.innerHTML = html;
+            });
         }
 
         // Render this week
         function renderThisWeek() {
             const thisWeekContainer = document.getElementById('thisweek');
+            if (!thisWeekContainer) return;
             const currentWeek = getCurrentWeek();
             const weekData = scheduleData.find(w => w.week === currentWeek);
 
@@ -1215,12 +1231,15 @@
             }
 
             html += '</div>';
-            thisWeekContainer.innerHTML = html;
+            requestAnimationFrame(() => {
+                thisWeekContainer.innerHTML = html;
+            });
         }
 
         // Render teams
         function renderTeams() {
             const teamsContainer = document.querySelector('.teams-list');
+            if (!teamsContainer) return;
             
             let html = '';
             teamsData.forEach(team => {
@@ -1252,7 +1271,9 @@
                 </div>
             `;
 
-            teamsContainer.innerHTML = html;
+            requestAnimationFrame(() => {
+                teamsContainer.innerHTML = html;
+            });
         }
 
         // Tab switching function
@@ -1272,16 +1293,21 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            renderSchedule();
-            renderStandings();
-            renderThisWeek();
-            renderTeams();
+            // Render immediately with cached data for instant display
+            requestAnimationFrame(() => {
+                renderSchedule();
+                renderStandings();
+                renderThisWeek();
+                renderTeams();
+            });
             
-            // Fetch data from Google Sheets
-            fetchStandings();
+            // Fetch data from Google Sheets after initial render
+            setTimeout(() => {
+                fetchStandings();
+            }, 100);
             
-            // Refresh data every 30 seconds
-            setInterval(fetchStandings, 30000);
+            // Refresh data every 60 seconds (reduced frequency)
+            setInterval(fetchStandings, 60000);
         });
 
         // Touch gesture support for tab switching
