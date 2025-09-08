@@ -1039,24 +1039,26 @@
 
         // Get current week based on today's date
         function getCurrentWeek() {
-            // Auto-calculate based on the user's browser date
+            // Auto-calculate to show the next upcoming week
             const today = new Date();
+            today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+            
             for (let i = 0; i < scheduleData.length; i++) {
                 const week = scheduleData[i];
                 if (week.isHoliday) continue;
                 
                 const weekDate = new Date(week.date);
-                const nextWeekDate = scheduleData[i + 1] ? new Date(scheduleData[i + 1].date) : new Date('2026-12-31');
+                weekDate.setHours(23, 59, 59, 999); // Set to end of game day
                 
-                if (today >= weekDate && today < nextWeekDate) {
+                // If today is before or on the game day, this is the current week
+                if (today <= weekDate) {
                     return week.week;
                 }
             }
-            return 1; // Default to week 1 if no current week found
             
-            /* Manual control option (uncomment to use specific week)
-            return 1; // Change this number to manually set the week
-            */
+            // If all weeks have passed, return the last week
+            const lastWeek = scheduleData[scheduleData.length - 1];
+            return lastWeek.week || 21;
         }
 
         // Render schedule
