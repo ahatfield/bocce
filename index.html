@@ -940,7 +940,7 @@
                     const cols = rows[i].split(',').map(c => c.trim());
                     if (cols[teamCol]) {
                         const teamName = cols[teamCol].replace(/['"]/g, ''); // Remove quotes if present
-                        const points = parseInt(cols[pointsCol]) || 0;
+                        const points = parseFloat(cols[pointsCol]) || 0;
                         
                         // Parse paid status - could be "Yes", "TRUE", "✓", "✅", "1", "Paid", etc.
                         let isPaid = false;
@@ -1028,7 +1028,7 @@
                         const cols = rows[i].split(',').map(c => c.trim());
                         if (cols[teamCol]) {
                             const teamName = cols[teamCol].replace(/['"]/g, '');
-                            const points = parseInt(cols[pointsCol]) || 0;
+                            const points = parseFloat(cols[pointsCol]) || 0;
                             
                             // Parse paid status
                             let isPaid = false;
@@ -1169,7 +1169,7 @@
                         <div class="standing-stats">
                             <div class="stat">
                                 <span class="stat-label">POINTS</span>
-                                <span class="stat-value">${team.points}</span>
+                                <span class="stat-value">${team.points % 1 === 0 ? team.points : team.points.toFixed(1)}</span>
                             </div>
                         </div>
                     </div>
